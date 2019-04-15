@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         game = new Game();
         if (savedInstanceState != null) {
             game = (Game) savedInstanceState.getSerializable("Game");
-            
+
 
             CharSequence Button1Visibility = savedInstanceState.getCharSequence("button1_visibility");
             Button button1 = (Button) findViewById(R.id.button1);
