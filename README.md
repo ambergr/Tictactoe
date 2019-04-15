@@ -1,4 +1,4 @@
-# Ticta# Tictactoe
+# Tictactoe
 
 Ik heb TicTacToe gemaakt. Waarbij wordt aangegeven of player 1 of player 2 gewonnnen heeft.
 Of dat het een draw is. De knoppen kunnen niet meer ingedrukt worden als er gewonnen is
