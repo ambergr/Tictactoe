@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 public class Game implements Serializable {
 
-
+    // maakt het bord, zorgt dat playerone aan de beurt is
     public Game() {
         board = new TileState[BOARD_SIZE][BOARD_SIZE];
         for (int i = 0; i < BOARD_SIZE; i++)
@@ -20,7 +20,8 @@ public class Game implements Serializable {
     private int movesPlayed;
     public Boolean gameOver;
 
-
+    // als de geklikte knop blank is
+    // als player one aan de beurt is dan, doe de geklikte knop naar circle en return
     public TileState choose(int row, int column) {
         if (board[row][column] == TileState.BLANK) {
             if (playerOneTurn) {
@@ -40,7 +41,10 @@ public class Game implements Serializable {
         }
     }
 
+    // check if game is won
     public GameState won() {
+        // loops over board, if horizontal, diagonal or vertical are all the same figure (x or o)
+        // than the is won. Check if player one or player two has one.
         for (int i = 0; i < 3; i++) {
             if (board[i][0] == board[i][1] && board[i][0]== board[i][2] && board[i][0] != TileState.BLANK) {
                 gameOver = true;
@@ -65,6 +69,7 @@ public class Game implements Serializable {
 
                     return GameState.PLAYER_ONE;
                 }
+             // als er negen knoppen ingedrukt zijn dan is het een draw
             } else if (movesPlayed == 9) {
                 gameOver = true;
                 return GameState.DRAW;

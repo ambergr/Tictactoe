@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         game = new Game();
+
+        // als de buttons ingedrukt waren is dit onthouden en met x en o
         if (savedInstanceState != null) {
             game = (Game) savedInstanceState.getSerializable("Game");
 
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    // onthoud de state van de buttons
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState); // always call super
         outState.putSerializable("Game", game);
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // voegt de coordinaten van een button toe aan die button
     public void tileClicked(View view) {
         int id = view.getId();
         Button Butttonchange = (Button) view;
@@ -156,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         TileState state = game.choose(row, column);
+
+        // voegt een kruis toe bij player two en een O bij player_one, bij draw, doe niks
         switch(state) {
             case CROSS:
                 Butttonchange.setText("X");
@@ -169,6 +174,9 @@ public class MainActivity extends AppCompatActivity {
                 // do something different
                 break;
         }
+
+        // als bij gane,won Player one returned wordt dan heeft die gewonnen --> print dat uit
+        // dit geld ook voor player two en als het een draw is
         TextView TextViewWon = (TextView) findViewById(R.id.textView) ;
         if (game.won() == PLAYER_ONE) {
             TextViewWon.setText("player 1 has won!");
@@ -180,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             TextViewWon.setText("It is a draw!");
         }
 
-
+        // als het spel gewonnen is zorg dat alle buttons niet meer op geklikt kunnen worden
         if (game.gameOver){
             findViewById(R.id.button1).setClickable(false);
             findViewById(R.id.button2).setClickable(false);
@@ -193,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.button9).setClickable(false);
         }
     }
-
+    // zorgt dat er een nieuwe game gestart en dat alle knoppen gereset wordt
     public void resetClicked(View view) {
         // reset userface
         setContentView(R.layout.activity_main);
